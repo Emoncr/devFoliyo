@@ -50,7 +50,7 @@ const HeroSection = () => {
                   className="text-4xl lg:text-6xl font-bold leading-tight"
                 >
                   Hi, I&#39;m{" "}
-                  <span className="bg-gradient-to-r from-primary to-blue-500 bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-primary to-orange-500 bg-clip-text text-transparent">
                     {"Emon"}
                   </span>
                 </motion.h1>

@@ -1,8 +1,8 @@
 export const workHistory = [
   {
     companyLogoWhite: "/logos/squaredonation logo.png",
-    companyLogoDark: "/logos/eventizer_logo_white.png",
-    company: "SquareDonation",
+    companyLogoDark: "/logos/squaredonation logo.png",
+    company: "SquareDonations",
     role: "Frontend Developer",
     period: "2025-Present",
   },
@@ -24,25 +24,41 @@ export const workHistory = [
 
 export const portfolioHighlights = [
   {
-    title: "SaaS Dashboard",
-    description: "Modern analytics dashboard with real-time data visualization",
-    image:
-      "https://images.pexels.com/photos/265087/pexels-photo-265087.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=2",
-    tags: ["React", "D3.js", "Node.js"],
+    title: "Eventizer",
+    description:
+      "Eventizer is a collaborative project where I served as the front-end developer. Built using Next.js 14 and Shadcn, this web application enables users to plan, manage, and organize events seamlessly.",
+    image: "/images/projects/myeventizer.webp",
+    tags: ["Next.js", "Shadcn", "Zustand", "SWR", "Javascript", "Tailwind CSS"],
   },
   {
-    title: "Mobile Banking App",
-    description: "Secure and intuitive mobile banking interface",
-    image:
-      "https://images.pexels.com/photos/147413/twitter-facebook-together-exchange-147413.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=2",
-    tags: ["React Native", "Redux", "Authentication"],
+    title: "Property Sale",
+    description:
+      "Property Sale'! 🏡 is a real estate website which Built on MERN stack with real-time chat functionality using Socket Io. A platform where you can buy, sell, or rent properties.",
+    image: "/images/projects/propertysale.webp",
+    tags: [
+      "React.js",
+      "Socket.IO",
+      "Tailwind CSS",
+      "Firebase",
+      "Express.js",
+      "MongoDB",
+      "Redux",
+    ],
   },
   {
-    title: "E-learning Platform",
-    description: "Interactive online learning management system",
-    image:
-      "https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=2",
-    tags: ["Next.js", "MongoDB", "Video Streaming"],
+    title: "Bangladesh Now",
+    description:
+      "📰Bangladesh Now is a full-stack news portal web app developed with modern technologies like Next.js 14, Prisma, and PostgreSQL Database. It offers various features such as news search, filtering, commenting 💬, authentication 🔓, forget password functionality, and more.",
+    image: "/images/projects/honey-and-salt.webp",
+    tags: [
+      "React.js",
+      "Next.js 14",
+      "Prisma",
+      "PostgreSQL",
+      "Tailwind CSS",
+      "JWT",
+      "JavaScript",
+    ],
   },
 ];
 export const featuredTemplates = [

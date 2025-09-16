@@ -6,8 +6,10 @@ import { Calendar } from "lucide-react";
 
 import { workHistory } from "@/data";
 import Image from "next/image";
+import { useTheme } from "next-themes";
 
 const WorkHistorySection = () => {
+  const { theme, setTheme } = useTheme();
   return (
     <>
       {/* Work History */}
@@ -40,7 +42,11 @@ const WorkHistorySection = () => {
                 <Card className="h-full hover:shadow-lg transition-shadow">
                   <CardContent className="p-6 text-center">
                     <Image
-                      src={job?.companyLogoWhite}
+                      src={
+                        theme === "dark"
+                          ? job?.companyLogoDark
+                          : job?.companyLogoWhite
+                      }
                       alt={job.company}
                       width={160}
                       height={100}

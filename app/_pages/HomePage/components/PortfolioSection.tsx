@@ -1,36 +1,12 @@
-
 "use client";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
-import {
-  ArrowRight,
-  Download,
-  Star,
-  ChevronLeft,
-  ChevronRight,
-  ExternalLink,
-  Github,
-  Twitter,
-  Linkedin,
-  Instagram,
-  Calendar,
-  Users,
-  Trophy,
-  Briefcase,
-  CalendarDays,
-  Clock,
-  Dot,
-} from "lucide-react";
-import { useState } from "react";
-import Link from "next/link";
+import { ExternalLink } from "lucide-react";
 import Image from "next/image";
 
 import { portfolioHighlights } from "@/data";
-
 
 const PortfolioSection = () => {
   return (
@@ -63,14 +39,14 @@ const PortfolioSection = () => {
                 viewport={{ once: true }}
                 className="group"
               >
-                <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 group-hover:scale-105">
-                  <div className="relative overflow-hidden">
+                <Card className="overflow-hidden hover:shadow-xl transition-all duration-700 group-hover:scale-[1.01]">
+                  <div className="relative overflow-hidden p-4 bg-[#f7f7f7] dark:bg-[#0B111D]">
                     <Image
                       src={project.image}
                       alt={project.title}
                       width={600}
                       height={400}
-                      className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300"
+                      className="w-full h-64  group-hover:scale-110 transition-transform duration-700 rounded-xl shadow-sm object-fill"
                     />
                     <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                       <Button size="sm" variant="secondary">
@@ -83,7 +59,7 @@ const PortfolioSection = () => {
                     <h3 className="font-semibold text-lg mb-2">
                       {project.title}
                     </h3>
-                    <p className="text-muted-foreground text-sm mb-4">
+                    <p className="text-muted-foreground text-sm mb-4 line-clamp-4">
                       {project.description}
                     </p>
                     <div className="flex flex-wrap gap-2">
