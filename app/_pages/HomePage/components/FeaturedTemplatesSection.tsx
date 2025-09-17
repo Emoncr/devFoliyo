@@ -4,33 +4,52 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
-import {
-  ArrowRight,
-  Download,
-  Star,
-  ChevronLeft,
-  ChevronRight,
-  ExternalLink,
-  Github,
-  Twitter,
-  Linkedin,
-  Instagram,
-  Calendar,
-  Users,
-  Trophy,
-  Briefcase,
-  CalendarDays,
-  Clock,
-  Dot,
-} from "lucide-react";
-import { useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
 
 import { featuredTemplates } from "@/data";
+import useSWR from "swr";
+import fetchApi from "@/utils/apiMaker";
+import PortfolioSkeletonShimmer from "@/components/skeletons/PortfolioSkeletonShimmer";
+
+interface Template {
+  _id: string;
+  title: string;
+  shortDescription: string;
+  longDescription: string;
+  tags: string[];
+  coverImage: string;
+  sampleImages: string[];
+  previewLink: string;
+  projectDate: string; // ISO date string (YYYY-MM-DD)
+  techStack: string[];
+  isFeatured: boolean;
+  isHighlighted: boolean;
+  categories: string[];
+  projectType: string;
+  githubLink: string;
+  basePrice: number;
+  discountPrice: number;
+  rating: number;
+  badge: string;
+  totalSold: number;
+
+  __v: number;
+}
+
 const FeaturedTemplatesSection = () => {
+  const { data, isLoading, error } = useSWR(
+    "/featured-templates",
+    fetchApi({
+      endpoint: "/template",
+      path: "/all?limit=3",
+      method: "GET",
+    })
+  );
+
+  const templates = data?.data?.items || [];
+
+  console.log(templates, "templates");
+
   return (
     <>
       <section className="py-20 bg-secondary/30">
@@ -51,58 +70,82 @@ const FeaturedTemplatesSection = () => {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {featuredTemplates.map((template, index) => (
-              <motion.div
-                key={template.id}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="group"
-              >
-                <Card className="overflow-hidden hover:shadow-xl transition-all duration-300">
-                  <div className="relative overflow-hidden">
-                    <Image
-                      src={template.image}
-                      alt={template.title}
-                      width={400}
-                      height={300}
-                      className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300"
-                    />
-                    <div className="absolute top-4 right-4">
-                      <Badge className="bg-primary text-primary-foreground">
-                        {template.price}
-                      </Badge>
+          {isLoading ? (
+            <PortfolioSkeletonShimmer />
+          ) : (
+            <div className="grid md:grid-cols-3 gap-8">
+              {templates.map((template: Template, index: number) => (
+                <motion.div
+                  key={template?._id}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="group"
+                >
+                  <Card className="overflow-hidden hover:shadow-xl transition-all duration-300">
+                    <div className="relative overflow-hidden">
+                      {template?.coverImage && (
+                        <Image
+                          src={template.coverImage}
+                          alt={template?.title ?? "Template"}
+                          width={400}
+                          height={300}
+                          className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300"
+                        />
+                      )}
+                      {template?.discountPrice || template?.basePrice ? (
+                        <div className="absolute top-4 right-4">
+                          <Badge className="bg-primary text-primary-foreground">
+                            ${template?.discountPrice ?? template?.basePrice}
+                          </Badge>
+                        </div>
+                      ) : null}
                     </div>
-                  </div>
-                  <CardContent className="p-6">
-                    <h3 className="font-semibold text-lg mb-2">
-                      {template.title}
-                    </h3>
-                    <p className="text-muted-foreground text-sm mb-4">
-                      {template.description}
-                    </p>
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {template.tags.map((tag) => (
-                        <Badge key={tag} variant="outline" className="text-xs">
-                          {tag}
-                        </Badge>
-                      ))}
-                    </div>
-                    <div className="flex space-x-2">
-                      <Button size="sm" className="flex-1">
-                        Buy Now
-                      </Button>
-                      <Button size="sm" variant="outline">
-                        Preview
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
+                    <CardContent className="p-6">
+                      <h3 className="font-semibold text-lg mb-2">
+                        {template?.title}
+                      </h3>
+                      <p className="text-muted-foreground text-sm mb-4">
+                        {template?.shortDescription}
+                      </p>
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {template?.tags?.map((tag) => (
+                          <Badge
+                            key={tag}
+                            variant="outline"
+                            className="text-xs"
+                          >
+                            {tag}
+                          </Badge>
+                        ))}
+                      </div>
+                      <div className="flex space-x-2">
+                        <Button
+                          size="sm"
+                          className="flex-1"
+                          disabled={!template}
+                        >
+                          Buy Now
+                        </Button>
+                        {template?.previewLink && (
+                          <Button size="sm" variant="outline" asChild>
+                            <a
+                              href={template.previewLink}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              Preview
+                            </a>
+                          </Button>
+                        )}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
     </>

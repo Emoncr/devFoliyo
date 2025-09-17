@@ -39,7 +39,6 @@ const PortfolioSection = () => {
 
   const portfolioHighlights = data?.data?.items || [];
 
-  console.log(portfolioHighlights);
 
   return (
     <>
