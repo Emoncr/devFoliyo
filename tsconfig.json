@@ -22,7 +22,11 @@
     "paths": {
       "@/*": ["./*"],
       "@app/*": ["./app/*"],
-      "@components/*": ["./components/*"]
+      "@components/*": ["./components/*"],
+      "@/components/*": ["./components/*"],
+      "@/utils/*": ["./utils/*"],
+      "@/data/*": ["./data/*"],
+      "@/lib/*": ["./lib/*"]
     }
   },
   "include": [
