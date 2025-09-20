@@ -16,7 +16,7 @@ export default function HomePage() {
       <PortfolioSection />
       <FeaturedTemplatesSection />
       <ScheduleSection />
-      <TestimonialsSection />
+      {/* <TestimonialsSection /> */}
       <Footer />
     </div>
   );

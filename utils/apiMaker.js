@@ -1,12 +1,7 @@
-import { getToken } from "@/lib/action";
-
-
 export const base_url =
   process.env.NODE_ENV === "development"
-    ? "https://staging.squaredonations.com/api"
-    : "https://staging.squaredonations.com/api";
-
-// const base_url = "https://test-server-z6ji.onrender.com";
+    ? "https://dev-foliyo-backend.vercel.app/api"
+    : "https://dev-foliyo-backend.vercel.app/api";
 
 export const fetchApi = ({ endpoint, path, method = "GET" }) => {
   return async ({
@@ -25,14 +20,13 @@ export const fetchApi = ({ endpoint, path, method = "GET" }) => {
       });
     }
     try {
-      const server_token = await getToken();
       const response = await fetch(url, {
         credentials: "include",
         method,
         ...(cache && { cache }),
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token || server_token}`,
+          Authorization: `Bearer ${token}`,
           ...headers,
         },
         next: nextHeaders,
@@ -100,3 +94,5 @@ async function appError(response, isHandleError) {
     throw error;
   }
 }
+
+export default fetchApi;
