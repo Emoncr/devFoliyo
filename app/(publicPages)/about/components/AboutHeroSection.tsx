@@ -4,16 +4,12 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
-import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
 import {
   Mail,
   MapPin,
   Calendar,
   Award,
   Code,
-  Palette,
   Database,
   Globe,
   Smartphone,

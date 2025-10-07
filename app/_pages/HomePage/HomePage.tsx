@@ -5,7 +5,6 @@ import FeaturedTemplatesSection from "./components/FeaturedTemplatesSection";
 import ScheduleSection from "./components/ScheduleSection";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
-import TestimonialsSection from "./components/TestimonialsSection";
 
 export default function HomePage() {
   return (

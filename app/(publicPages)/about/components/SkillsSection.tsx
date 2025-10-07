@@ -1,27 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
-import {
-  Mail,
-  MapPin,
-  Calendar,
-  Award,
-  Code,
-  Palette,
-  Database,
-  Globe,
-  Smartphone,
-  Server,
-  Layers,
-  Zap,
-  Figma,
-} from "lucide-react";
+
+
 import Image from "next/image";
 
 const skills = [

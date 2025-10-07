@@ -2,16 +2,13 @@
 
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import Navbar from '@/components/navbar';
 import Footer from '@/components/footer';
 import { 
   ArrowLeft,
-  ExternalLink,
   Github,
-  Calendar,
-  User,
   Globe,
   ChevronLeft,
   ChevronRight

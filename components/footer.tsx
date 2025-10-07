@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { Github, Twitter, Linkedin, Instagram, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';

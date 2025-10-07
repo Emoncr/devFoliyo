@@ -28,8 +28,8 @@ interface PortfolioHighlight {
 }
 
 const PortfolioSection = () => {
-  const { data, isLoading, error } = useSWR(
-    "/featured-projects",
+  const { data, isLoading } = useSWR(
+    "/top-projects",
     fetchApi({
       endpoint: "/project",
       path: "/all?limit=3",
@@ -38,7 +38,6 @@ const PortfolioSection = () => {
   );
 
   const portfolioHighlights = data?.data?.items || [];
-
 
   return (
     <>

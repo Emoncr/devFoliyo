@@ -6,7 +6,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 
-import { featuredTemplates } from "@/data";
 import useSWR from "swr";
 import fetchApi from "@/utils/apiMaker";
 import PortfolioSkeletonShimmer from "@/components/skeletons/PortfolioSkeletonShimmer";

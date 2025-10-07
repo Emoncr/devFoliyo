@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:fix": "eslint --ext .js,.jsx,.ts,.tsx . --fix"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.1",
@@ -47,7 +48,6 @@
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
     "embla-carousel-react": "^8.3.0",
-    "eslint": "8.49.0",
     "eslint-config-next": "13.5.1",
     "framer-motion": "^12.23.12",
     "input-otp": "^1.2.4",
@@ -69,5 +69,11 @@
     "typescript": "5.2.2",
     "vaul": "^0.9.9",
     "zod": "^4.0.17"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-unused-imports": "^4.2.0",
+    "prettier": "^3.6.2"
   }
 }
