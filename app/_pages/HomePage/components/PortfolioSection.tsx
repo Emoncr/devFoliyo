@@ -6,8 +6,8 @@ import { Badge } from "@/components/ui/badge";
 import { ExternalLink } from "lucide-react";
 import Image from "next/image";
 import fetchApi from "@/utils/apiMaker";
-import PortfolioSkeletonShimmer from "@/components/skeletons/PortfolioSkeletonShimmer";
 import useSWR from "swr";
+import PortfolioSkeletonShimmer from "@/components/skeletons/PortfolioSkeletonShimmer";
 
 interface PortfolioHighlight {
   _id: string;

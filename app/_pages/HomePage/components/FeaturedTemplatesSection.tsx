@@ -36,7 +36,7 @@ interface Template {
 }
 
 const FeaturedTemplatesSection = () => {
-  const { data, isLoading, error } = useSWR(
+  const { data, isLoading,  } = useSWR(
     "/featured-templates",
     fetchApi({
       endpoint: "/template",
