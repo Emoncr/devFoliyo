@@ -7,9 +7,10 @@ import { Card } from "@/components/ui/card";
 import useSWR from "swr";
 import fetchApi from "@/utils/apiMaker";
 import ProjectCard from "./ProjectCard";
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import ProjectsCardSkeletonShimmer from "@/components/skeletons/ProjectsCardSkeletonShimmer";
 import EmptyResult from "@/components/common/EmptyResult";
+import { useSearchParams } from "next/navigation";
 
 interface Project {
   _id: string;
@@ -32,7 +33,7 @@ interface Project {
 const categories = [
   { id: 1, value: "all", label: "All" },
   { id: 2, value: "webapp", label: "Web App" },
-  { id: 3, value: "portfolio", label: "Portfolio" },
+  { id: 3, value: "Portfolio", label: "Portfolio" },
   { id: 4, value: "e-commerce", label: "E-commerce" },
   { id: 5, value: "landing-page", label: "Landing Page" },
   { id: 6, value: "dashboard", label: "Dashboard" },
@@ -47,25 +48,45 @@ const technologies = [
   { id: 6, value: "node.js", label: "Node.js" },
   { id: 7, value: "typescript", label: "TypeScript" },
 ];
-const AllProjectsSection = () => {
-  const [selectedCategory, setSelectedCategory] = useState("all");
+
+interface AllProjectsSectionProps {
+  searchQuery: string;
+  setSearchQuery: (query: string) => void;
+  selectedCategory: string;
+  setSelectedCategory: (category: string) => void;
+}
+
+const AllProjectsSection = ({
+  searchQuery,
+  setSearchQuery,
+  selectedCategory,
+  setSelectedCategory,
+}: AllProjectsSectionProps) => {
+  const params = useSearchParams();
+
   const [selectedTechnology, setSelectedTechnology] = useState("all");
 
-  // Build query string based on current selections
+  // Build query string based on current selections and search params
   const queryString = useMemo(() => {
     const queryParams = new URLSearchParams();
 
     if (selectedCategory !== "all") {
       queryParams.set("categories", selectedCategory);
+      setSearchQuery("");
     }
 
     if (selectedTechnology !== "all") {
       queryParams.set("techStack", selectedTechnology);
+      setSearchQuery("");
+    }
+
+    if (searchQuery) {
+      queryParams.set("search", searchQuery);
     }
 
     const result = queryParams.toString();
     return result ? `?${result}` : "";
-  }, [selectedCategory, selectedTechnology]);
+  }, [selectedCategory, selectedTechnology, searchQuery]);
 
   const { data, isLoading } = useSWR(
     `/project/all${queryString}`,
@@ -95,7 +116,6 @@ const AllProjectsSection = () => {
               <Card className="p-6 sticky top-24">
                 <h3 className="font-semibold text-lg mb-4">Filter Projects</h3>
                 <div className="space-y-4">
-            
                   <div>
                     <h4 className="font-medium mb-2">Category</h4>
                     <div className="space-y-2">
@@ -149,6 +169,14 @@ const AllProjectsSection = () => {
                   Explore my complete portfolio of work across different
                   technologies and industries
                 </p>
+                {params.get("search") && (
+                  <p className="text-sm text-muted-foreground mt-2">
+                    Searching for:{" "}
+                    <span className="font-semibold">
+                      {params.get("search")}
+                    </span>
+                  </p>
+                )}
               </motion.div>
 
               {isLoading ? (

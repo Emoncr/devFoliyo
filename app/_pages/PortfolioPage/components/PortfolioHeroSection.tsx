@@ -5,21 +5,41 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { Search, Filter } from "lucide-react";
+import { Search, Filter, SearchCheck, Cross, X } from "lucide-react";
 
 const categories = [
-  "All",
-  "Web App",
-  "Mobile App",
-  "E-commerce",
-  "Landing Page",
-  "Dashboard",
+  { id: 2, value: "webapp", label: "Web App" },
+  { id: 3, value: "Portfolio", label: "Portfolio" },
+  { id: 4, value: "e-commerce", label: "E-commerce" },
+  { id: 5, value: "landing-page", label: "Landing Page" },
+  { id: 6, value: "dashboard", label: "Dashboard" },
 ];
 
-const PortfolioHeroSection = () => {
-  const [selectedCategory, setSelectedCategory] = useState("All");
-  const [searchQuery, setSearchQuery] = useState("");
-  const [showFilters, setShowFilters] = useState(false);
+interface PortfolioHeroSectionProps {
+  onSearch: () => void;
+  setSearchQuery: (query: string) => void;
+  searchQuery: string;
+  selectedCategory: string;
+  setSelectedCategory: (category: string) => void;
+}
+
+const PortfolioHeroSection = ({
+  onSearch,
+  setSearchQuery,
+  selectedCategory,
+  setSelectedCategory,
+}: PortfolioHeroSectionProps) => {
+  const [searchValue, setSearchValue] = useState("");
+  const handleSearchFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSearchQuery(searchValue);
+    onSearch();
+  };
+
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category);
+    onSearch();
+  };
 
   return (
     <>
@@ -50,47 +70,65 @@ const PortfolioHeroSection = () => {
             </div>
 
             {/* Search and Filters */}
-            <div className="flex flex-col md:flex-row gap-4 justify-center items-center max-w-2xl mx-auto">
-              <div className="relative flex-1 w-full">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
-                <Input
-                  placeholder="Search projects..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10"
-                />
+            <form onSubmit={(e) => handleSearchFormSubmit(e)}>
+              <div className="flex flex-col md:flex-row gap-4 justify-center items-center max-w-2xl mx-auto">
+                <div className="relative flex-1 w-full">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
+                  <Input
+                    placeholder="Search projects..."
+                    value={searchValue}
+                    onChange={(e) => setSearchValue(e.target.value)}
+                    className="pl-10 h-12"
+                  />
+                  {searchValue && (
+                    <Button
+                      className="absolute right-1 top-1/2 transform -translate-y-1/2 text-muted-foreground "
+                      type="button"
+                      variant={"ghost"}
+                      size={"sm"}
+                      onClick={() => setSearchValue("")}
+                    >
+                      <X />
+                    </Button>
+                  )}
+                </div>
+                <Button type="submit" className="w-full md:w-auto h-[46px]">
+                  {/* <SearchCheck className="w-4 h-4 mr-2" /> */}
+                  Search
+                </Button>
               </div>
-              <Button
-                variant="outline"
-                onClick={() => setShowFilters(!showFilters)}
-                className="w-full md:w-auto"
-              >
-                <Filter className="w-4 h-4 mr-2" />
-                Filters
-              </Button>
-            </div>
+            </form>
 
             {/* Category Filters */}
             <motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{
-                opacity: showFilters ? 1 : 0,
-                height: showFilters ? "auto" : 0,
+                opacity: 1,
+                height: "auto",
               }}
               transition={{ duration: 0.3 }}
               className="overflow-hidden"
             >
               <div className="flex flex-wrap gap-2 justify-center">
+                <Button
+                  variant={selectedCategory === "all" ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => handleCategoryChange("all")}
+                >
+                  All
+                </Button>
                 {categories.map((category) => (
                   <Button
-                    key={category}
+                    key={category?.id}
                     variant={
-                      selectedCategory === category ? "default" : "outline"
+                      selectedCategory === category?.value
+                        ? "default"
+                        : "outline"
                     }
                     size="sm"
-                    onClick={() => setSelectedCategory(category)}
+                    onClick={() => handleCategoryChange(category?.value)}
                   >
-                    {category}
+                    {category?.label}
                   </Button>
                 ))}
               </div>
