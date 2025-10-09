@@ -4,16 +4,12 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
-import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
 import {
   Mail,
   MapPin,
   Calendar,
   Award,
   Code,
-  Palette,
   Database,
   Globe,
   Smartphone,
@@ -156,24 +152,29 @@ const AboutHeroSection = () => {
                     Creative Designer
                   </span>
                 </h1>
-                <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                  {`I’m a passionate developer with a strong focus on building clean, efficient, and user-friendly solutions. I enjoy solving complex problems with simple, maintainable code, and I believe in writing software that’s both functional and elegant.`}
-                </p>
-                <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                  {`My work spans across [insert your main skills here – e.g., web development, backend systems, data analysis, or UI design]. I thrive in collaborative environments where ideas turn into impactful products, but I’m equally comfortable driving solo projects from concept to launch.`}
-                </p>
-                <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                  {`When I’m not coding, I’m usually [insert something personal but professional – e.g., exploring new tech stacks, contributing to open-source, or learning about design systems].`}
-                </p>
-                <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                  {`I see every project as an opportunity to grow, experiment, and push boundaries — and I’m always excited to take on new challenges.`}
-                </p>
+                <div className="text-base">
+                  <p className="text-muted-foreground leading-relaxed mb-6">
+                    {`I'm a passionate, web developer who specializes in full stack development (React.js & Node.js). I am enthusiastic about bringing the technical and visual aspects of digital products to life. User experience, pixel perfect design, and writing clear, readable, highly performant code matters to me.`}
+                  </p>
+                  <p className="text-muted-foreground leading-relaxed mb-6">
+                    {`I began my journey as a web developer in 2020, and since then, I've continued to grow and evolve as a developer, taking on new challenges and learning the latest technologies along the way. Now, in my early thirties, 2 years after starting my web development journey, I'm building cutting-edge web applications using modern technologies such as Next.js, Tailwindcss and much more.`}
+                  </p>
+                  <p className="text-muted-foreground leading-relaxed mb-6">
+                    {`I am very much a progressive thinker and enjoy working on products end to end, from ideation all the way to development.`}
+                  </p>
+                  <p className="text-muted-foreground leading-relaxed mb-6">
+                    {`When I'm not in full-on developer mode, you can find me hovering around on linkedin or twitter. You can follow me on Linkedin and Twitter where I share tech-related tidbits, or you can follow me on GitHub.`}
+                  </p>
+                  <p className="text-muted-foreground leading-relaxed mb-6">
+                    {`One last thing, I'm available for freelance work, so feel free to reach out and say hello! 😉`}
+                  </p>
+                </div>
               </div>
 
               <div className="flex flex-wrap gap-4 text-sm">
                 <div className="flex items-center text-muted-foreground">
                   <MapPin className="w-4 h-4 mr-2" />
-                  San Francisco, CA
+                 Kushita, Bangladesh
                 </div>
                 <div className="flex items-center text-muted-foreground">
                   <Calendar className="w-4 h-4 mr-2" />
@@ -181,7 +182,7 @@ const AboutHeroSection = () => {
                 </div>
                 <div className="flex items-center text-muted-foreground">
                   <Award className="w-4 h-4 mr-2" />
-                  6+ years experience
+                  4+ years experience
                 </div>
               </div>
 

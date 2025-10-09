@@ -19,7 +19,6 @@ import {
   Search,
   Filter,
   ExternalLink,
-  Download,
   Star,
   ShoppingCart,
   Eye,

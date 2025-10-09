@@ -1,143 +1,49 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
-import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
-import {
-  Mail,
-  MapPin,
-  Calendar,
-  Award,
-  Code,
-  Palette,
-  Database,
-  Globe,
-  Smartphone,
-  Server,
-  Layers,
-  Zap,
-  Figma,
-} from "lucide-react";
 import Image from "next/image";
-
-const skills = [
-  {
-    name: "JavaScript/TypeScript",
-    level: 95,
-    icon: Code,
-    color: "bg-yellow-500",
-    logo: "https://images.pexels.com/photos/11035380/pexels-photo-11035380.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&dpr=2",
-  },
-  {
-    name: "React/Next.js",
-    level: 90,
-    icon: Globe,
-    color: "bg-blue-500",
-    logo: "https://images.pexels.com/photos/11035471/pexels-photo-11035471.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&dpr=2",
-  },
-  {
-    name: "Node.js/Express",
-    level: 85,
-    icon: Server,
-    color: "bg-green-500",
-    logo: "https://images.pexels.com/photos/11035540/pexels-photo-11035540.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&dpr=2",
-  },
-  {
-    name: "UI/UX Design",
-    level: 80,
-    icon: Figma,
-    color: "bg-purple-500",
-    logo: "https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&dpr=2",
-  },
-  {
-    name: "Database Design",
-    level: 85,
-    icon: Database,
-    color: "bg-orange-500",
-    logo: "https://images.pexels.com/photos/270637/pexels-photo-270637.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&dpr=2",
-  },
-  {
-    name: "Mobile Development",
-    level: 75,
-    icon: Smartphone,
-    color: "bg-pink-500",
-    logo: "https://images.pexels.com/photos/11035382/pexels-photo-11035382.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&dpr=2",
-  },
-  {
-    name: "Full Stack Development",
-    level: 88,
-    icon: Layers,
-    color: "bg-indigo-500",
-    logo: "https://images.pexels.com/photos/265087/pexels-photo-265087.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&dpr=2",
-  },
-  {
-    name: "Performance Optimization",
-    level: 82,
-    icon: Zap,
-    color: "bg-red-500",
-    logo: "https://images.pexels.com/photos/147413/twitter-facebook-together-exchange-147413.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&dpr=2",
-  },
-];
+import { useTheme } from "next-themes";
 
 const timeline = [
   {
-    year: "2023",
-    title: "Senior Frontend Developer at Google",
+    year: "Present",
+    title: "Frontend Developer at SquareDonations",
     description:
-      "Leading frontend development for Google Cloud Console, managing a team of 5 developers.",
+      "Leading frontend development for SquareDonations. Building saas web apps, Dashboards, Plugins and custom scripts for squarespace and wordpress.",
     type: "work",
-    logo: "https://images.pexels.com/photos/2182863/pexels-photo-2182863.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&dpr=2",
+    logo: "/logos/squaredonation logo.png",
+    darkLogo: "/logos/squaredonation logo.png",
+    width: 180,
   },
   {
-    year: "2022",
-    title: "Launched Premium Template Store",
+    year: "2024-2025",
+    title: "Frontend Developer at Eventizer",
     description:
-      "Started my own template business, serving over 1000+ customers worldwide.",
-    type: "achievement",
-    logo: null,
-  },
-  {
-    year: "2020",
-    title: "Full Stack Developer at Meta",
-    description:
-      "Worked on React and Instagram web platform, reaching millions of users daily.",
+      "Worked on React.js and Next.js for building a scalable event management platform web app.",
     type: "work",
-    logo: "https://images.pexels.com/photos/147413/twitter-facebook-together-exchange-147413.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&dpr=2",
+    darkLogo: "/logos/eventizer_logo_white.png",
+    width: 120,
+    logo: "/logos/eventizer_logo.webp",
   },
   {
-    year: "2018",
-    title: "Frontend Developer at Uber",
+    year: "2021-2024",
+    title: "Javascript Developer at Fahim Code LTD",
     description:
-      "Built rider and driver web applications, focusing on real-time features.",
+      "Worked with React.js, vanilla JavaScript, HTML, and CSS to create custom solutions for WordPress and GoHighLevel, and occasionally worked with Shopify.",
     type: "work",
-    logo: "https://images.pexels.com/photos/1319854/pexels-photo-1319854.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&dpr=2",
-  },
-  {
-    year: "2016",
-    title: "Started Professional Career",
-    description:
-      "Joined Airbnb as a Junior Developer, learning from industry experts.",
-    type: "work",
-    logo: "https://images.pexels.com/photos/323705/pexels-photo-323705.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&dpr=2",
-  },
-  {
-    year: "2015",
-    title: "Computer Science Degree",
-    description:
-      "Graduated from Stanford University with honors in Computer Science.",
-    type: "education",
-    logo: "https://images.pexels.com/photos/267885/pexels-photo-267885.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&dpr=2",
+    logo: "/logos/fahimcode.webp",
+    width: 120,
+    darkLogo: "/logos/fahimcodewhite.webp",
   },
 ];
 
 const TimeLineSection = () => {
+  const { theme, setTheme } = useTheme();
   return (
     <>
-              <section className="py-20 bg-secondary/30">
+      <section className="py-20 bg-secondary/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -181,9 +87,11 @@ const TimeLineSection = () => {
                         <div className="flex items-center">
                           {item.logo && (
                             <Image
-                              src={item.logo}
+                              src={
+                                theme === "dark" ? item?.darkLogo : item?.logo
+                              }
                               alt={item.title}
-                              width={40}
+                              width={item?.width || 200}
                               height={40}
                               className="rounded-lg mr-3"
                             />
@@ -222,7 +130,7 @@ const TimeLineSection = () => {
         </div>
       </section>
     </>
-  )
-}
+  );
+};
 
-export default TimeLineSection
+export default TimeLineSection;
