@@ -4,10 +4,15 @@ import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 
-
 import Image from "next/image";
 
-const skills = [
+interface Skill {
+  name: string;
+  level: number;
+  logo: string;
+}
+
+const skills: Skill[] = [
   {
     name: "JavaScript/TypeScript",
     level: 95,
@@ -70,8 +75,6 @@ const skills = [
   },
 ];
 
-
-
 const SkillsSection = () => {
   return (
     <>
@@ -128,7 +131,9 @@ const SkillsSection = () => {
                             {skill.level}%
                           </span>
                         </div>
-                        <Progress value={skill.level} className="h-2" />
+
+                        {/* Error is here */}
+                        {/* <Progress value={skill?.level} className="h-2" /> */}
                       </div>
                     </div>
                   </Card>

@@ -4,8 +4,11 @@ import Link from "next/link";
 import { Heart } from "lucide-react";
 
 import SocialIcons from "./common/SocialIcons";
+import { useTheme } from "next-themes";
+import Image from "next/image";
 
 export default function Footer() {
+  const { theme } = useTheme();
   return (
     <footer className="bg-secondary/30 border-t border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -13,10 +16,25 @@ export default function Footer() {
           {/* Brand */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gradient-to-r from-primary to-blue-500 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">AJ</span>
-              </div>
-              <span className="font-bold text-xl">Alex Johnson</span>
+              <Link href="/" className="flex items-center space-x-2">
+                <>
+                  {theme === "dark" ? (
+                    <Image
+                      src="/logos/Logo for dark.png"
+                      alt="Logo"
+                      width={80}
+                      height={50}
+                    />
+                  ) : (
+                    <Image
+                      src="/logos/Logo for light.png"
+                      alt="Logo"
+                      width={80}
+                      height={80}
+                    />
+                  )}
+                </>
+              </Link>
             </div>
             <p className="text-muted-foreground text-sm">
               Creating beautiful digital experiences with modern web

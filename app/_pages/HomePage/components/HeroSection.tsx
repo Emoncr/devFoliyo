@@ -114,7 +114,7 @@ const HeroSection = () => {
                   <div className="w-full h-full bg-white dark:bg-slate-800 rounded-full shadow-2xl flex items-center justify-center overflow-hidden">
                     <Image
                       src="/images/image of emon.png"
-                      alt="Alex Johnson"
+                      alt="Dev personal image"
                       width={400}
                       height={400}
                       className="w-full h-full object-fill object-center"
