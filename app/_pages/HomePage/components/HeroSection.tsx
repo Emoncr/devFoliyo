@@ -2,19 +2,10 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import {
-  ArrowRight,
-  Download,
-  Github,
-  Twitter,
-  Linkedin,
-  Instagram,
-  Users,
-  Trophy,
-  Briefcase,
-} from "lucide-react";
+import { ArrowRight, Download, Users, Trophy, Briefcase } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import SocialIcons from "@/components/common/SocialIcons";
 
 const HeroSection = () => {
   return (
@@ -64,37 +55,9 @@ const HeroSection = () => {
                   {`I'm a full-stack developer (React.js & Node.js) with a focus on creating exceptional digital experiences that are fast, accessible, visually appealing, and responsive. I love working with React.js and Node.js and I'm always excited to learn and explore more about new technology.`}
                 </motion.p>
               </div>
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.6 }}
-                className="flex items-center justify-start space-x-4"
-              >
-                <Link
-                  href="#"
-                  className="p-2 bg-secondary rounded-lg hover:bg-black hover:text-white transition-colors"
-                >
-                  <Github className="w-5 h-5" />
-                </Link>
-                <Link
-                  href="#"
-                  className="p-2 bg-secondary rounded-lg hover:bg-blue-600 hover:text-white transition-colors"
-                >
-                  <Linkedin className="w-5 h-5" />
-                </Link>
-                <Link
-                  href="#"
-                  className="p-2 bg-secondary rounded-lg hover:bg-blue-400 hover:text-white transition-colors"
-                >
-                  <Twitter className="w-5 h-5" />
-                </Link>
-                <Link
-                  href="#"
-                  className="p-2 bg-secondary rounded-lg hover:bg-pink-600 hover:text-white transition-colors"
-                >
-                  <Instagram className="w-5 h-5" />
-                </Link>
-              </motion.div>
+              <>
+                <SocialIcons />
+              </>
 
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -110,7 +73,7 @@ const HeroSection = () => {
                 </Link>
                 <Button
                   size="lg"
-                  variant="secondary"
+                  variant="outline"
                   className="w-full sm:w-auto"
                 >
                   <Download className="mr-2 w-4 h-4" />
@@ -151,7 +114,7 @@ const HeroSection = () => {
                   <div className="w-full h-full bg-white dark:bg-slate-800 rounded-full shadow-2xl flex items-center justify-center overflow-hidden">
                     <Image
                       src="/images/image of emon.png"
-                      alt="Alex Johnson"
+                      alt="Dev personal image"
                       width={400}
                       height={400}
                       className="w-full h-full object-fill object-center"

@@ -1,12 +1,12 @@
 import AboutHeroSection from "./components/AboutHeroSection";
+import CtaSectionAboutPage from "./components/CtaSectionAboutPage";
 import SkillsSection from "./components/SkillsSection";
 import TimeLineSection from "./components/TimeLineSection";
-import CtaSectionAboutPage from "./components/CtaSectionAboutPage";
 
 export default function About() {
   return (
     <>
-      <AboutHeroSection />
+      <AboutHeroSection /> 
       <SkillsSection />
       <TimeLineSection />
       <CtaSectionAboutPage />

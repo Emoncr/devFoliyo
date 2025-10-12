@@ -3,11 +3,11 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
-
+// import NextTopLoader from "nextjs-toploader";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
-  title: "Alex Johnson - Portfolio & Templates",
+  title: "Emon Dev Portfolio",
   description:
     "Professional web developer portfolio and premium template store",
 };
@@ -27,6 +27,14 @@ export default function RootLayout({
           disableTransitionOnChange={false}
         >
           {children}
+          {/* <NextTopLoader
+            color="#AF123F"
+            initialPosition={0.08}
+            crawlSpeed={200}
+            height={3}
+            crawl={true}
+            showSpinner={false}
+          /> */}
           <Toaster />
         </ThemeProvider>
       </body>
