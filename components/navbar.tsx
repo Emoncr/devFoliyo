@@ -13,9 +13,10 @@ import {
   Home,
   User,
   FolderOpen,
-  ShoppingBag,
-  PenTool,
+  // ShoppingBag,
+  // PenTool,
   Mail,
+  Download,
 } from "lucide-react";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
@@ -24,8 +25,8 @@ const navigation = [
   { name: "Home", href: "/", icon: Home },
   { name: "About", href: "/about", icon: User },
   { name: "Portfolio", href: "/portfolio", icon: FolderOpen },
-  { name: "Templates", href: "/templates", icon: ShoppingBag },
-  { name: "Blog", href: "/blog", icon: PenTool },
+  // { name: "Templates", href: "/templates", icon: ShoppingBag },
+  // { name: "Blog", href: "/blog", icon: PenTool },
   { name: "Contact", href: "/contact", icon: Mail },
 ];
 
@@ -97,6 +98,7 @@ export default function Navbar() {
                 </Link>
               );
             })}
+            <div className="w-0.5 h-6 bg-slate-300 dark:bg-slate-600 rounded-xl"></div>
             <Button
               variant="ghost"
               size="sm"
@@ -107,6 +109,14 @@ export default function Navbar() {
               ) : (
                 <Moon className="w-4 h-4" />
               )}
+            </Button>
+            <Button
+              variant="default"
+              size="sm"
+              className="rounded-full text-xs"
+            >
+              <Download className="w-4 h-4 mr-2" />
+              Download CV
             </Button>
           </div>
 

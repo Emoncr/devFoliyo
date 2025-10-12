@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { Search, Filter, SearchCheck, Cross, X } from "lucide-react";
+import { Search, X } from "lucide-react";
 
 const categories = [
   { id: 2, value: "webapp", label: "Web App" },
@@ -44,7 +44,7 @@ const PortfolioHeroSection = ({
   return (
     <>
       {/* Hero Section */}
-      <section className="pt-24 pb-12 bg-gradient-to-br from-blue-50 via-white to-orange-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+      <section className="pt-32 pb-20 bg-gradient-to-br from-blue-50 via-white to-orange-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -64,7 +64,7 @@ const PortfolioHeroSection = ({
               </h1>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
                 A showcase of projects I&apos;ve worked on, from web
-                applications to mobile apps, each crafted with attention to
+                applications to web apps, each crafted with attention to
                 detail and modern best practices.
               </p>
             </div>

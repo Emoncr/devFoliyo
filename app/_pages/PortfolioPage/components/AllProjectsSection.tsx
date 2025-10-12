@@ -7,7 +7,7 @@ import { Card } from "@/components/ui/card";
 import useSWR from "swr";
 import fetchApi from "@/utils/apiMaker";
 import ProjectCard from "./ProjectCard";
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState } from "react";
 import ProjectsCardSkeletonShimmer from "@/components/skeletons/ProjectsCardSkeletonShimmer";
 import EmptyResult from "@/components/common/EmptyResult";
 import { useSearchParams } from "next/navigation";
