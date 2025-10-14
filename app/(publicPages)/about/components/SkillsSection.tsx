@@ -134,6 +134,21 @@ const SkillsSection = () => {
 
                         {/* Error is here */}
                         {/* <Progress value={skill?.level} className="h-2" /> */}
+
+                        {/* Custom progress bar */}
+                        <div className="w-full bg-primary/20 rounded-full h-2 overflow-hidden">
+                          <motion.div
+                            className="h-2 bg-primary rounded-full"
+                            initial={{ width: 0 }}
+                            whileInView={{ width: `${skill.level}%` }}
+                            transition={{
+                              duration: 1,
+                              ease: "easeOut",
+                              delay: index * 0.1,
+                            }}
+                            viewport={{ once: true }}
+                          />
+                        </div>
                       </div>
                     </div>
                   </Card>
