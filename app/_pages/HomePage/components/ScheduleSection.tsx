@@ -20,7 +20,7 @@ const ScheduleSection = () => {
   return (
     <>
       {/* Schedule Call Section */}
-      <section className="py-20 bg-gradient-to-r from-primary/10 to-blue-500/10">
+      <section className="py-8 sm:py-10 lg:py-20 bg-gradient-to-r from-primary/10 to-blue-500/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}

@@ -13,7 +13,7 @@ export default function HomePage() {
       <HeroSection />
       <WorkHistorySection />
       <PortfolioSection />
-      <FeaturedTemplatesSection />
+      {/* <FeaturedTemplatesSection /> */}
       <ScheduleSection />
       {/* <TestimonialsSection /> */}
       <Footer />

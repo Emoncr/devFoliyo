@@ -42,7 +42,7 @@ const PortfolioSection = () => {
   return (
     <>
       {/* Portfolio Highlights */}
-      <section className="py-20">
+      <section className="py-8 sm:py-10 lg:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -51,10 +51,10 @@ const PortfolioSection = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">
               Featured Projects
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-base sm:text-xl text-muted-foreground max-w-3xl mx-auto">
               {"Some of my recent work that I'm proud to showcase"}
             </p>
           </motion.div>
@@ -71,7 +71,7 @@ const PortfolioSection = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     viewport={{ once: true }}
-                    className="group"
+                    className="group overflow-hidden"
                   >
                     <Card className="overflow-hidden hover:shadow-xl transition-all duration-700 group-hover:scale-[1.01]">
                       <div className="relative overflow-hidden p-4 bg-[#f7f7f7] dark:bg-[#0B111D]">
