@@ -1,11 +1,14 @@
 "use client";
+
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Github, Eye } from "lucide-react";
+import { Github, Eye, SquareArrowOutUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import PortfolioModal from "./PortfolioModal";
+import { useState } from "react";
 
 interface Project {
   _id: string;
@@ -31,6 +34,8 @@ const ProjectCard = ({
   project: Project;
   index: number;
 }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <>
       <motion.div
@@ -41,7 +46,7 @@ const ProjectCard = ({
         viewport={{ once: true }}
         className="group"
       >
-        <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 h-full">
+        <Card className="overflow-hidden shadow-md shadow-primary/10 hover:shadow-lg transition-all duration-300 h-full">
           <div className="relative overflow-hidden">
             <Image
               src={project.coverImage}
@@ -52,15 +57,28 @@ const ProjectCard = ({
             />
             <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
               <div className="flex space-x-2">
-                <Link href={`/portfolio/${project._id}`}>
-                  <Button size="sm" variant="secondary">
-                    <Eye className="w-3 h-3 mr-1" />
-                    View
-                  </Button>
-                </Link>
+                {/* <Modal
+                  width="max-w-7xl"
+                  element={<PortfolioDetails project={project} />}
+                > */}
+                <Button onClick={() => setIsOpen(true)} size="sm" variant="secondary">
+                  <Eye className="w-4 h-4" />
+                </Button>
+                {/* </Modal> */}
+
+                <PortfolioModal
+                  project={project}
+                  isOpen={isOpen}
+                  onClose={() => setIsOpen(false)}
+                />
                 <Button size="sm" variant="outline" asChild>
                   <Link href={project.githubLink}>
-                    <Github className="w-3 h-3" />
+                    <Github className="w-4 h-4" />
+                  </Link>
+                </Button>
+                <Button size="sm" variant="outline" asChild>
+                  <Link href={project.githubLink}>
+                    <SquareArrowOutUpRight className="w-4 h-4" />
                   </Link>
                 </Button>
               </div>

@@ -21,6 +21,15 @@ import {
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
 
 const navigation = [
   { name: "Home", href: "/", icon: Home },
@@ -153,38 +162,32 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
-        <AnimatePresence>
-          {isOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="md:hidden border-t border-border"
-            >
-              <div className="py-4 space-y-2">
-                {navigation.map((item) => {
-                  const Icon = item.icon;
-                  return (
-                    <Link
-                      key={item.name}
-                      href={item.href}
-                      onClick={() => setIsOpen(false)}
+        {/* Sidebar Filter Sheet for Mobile */}
+        <Sheet open={isOpen} onOpenChange={setIsOpen}>
+          <SheetContent className="overflow-y-auto px-4">
+            <div className="py-4 space-y-4">
+              {navigation.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <Button
+                      variant={pathname === item.href ? "default" : "ghost"}
+                      size="sm"
+                      className="w-full justify-start gap-2"
                     >
-                      <Button
-                        variant={pathname === item.href ? "secondary" : "ghost"}
-                        className="w-full justify-start"
-                      >
-                        <Icon className="w-4 h-4 mr-2" />
-                        {item.name}
-                      </Button>
-                    </Link>
-                  );
-                })}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+                      <Icon className="w-4 h-4 mr-2" />
+                      {item.name}
+                    </Button>
+                  </Link>
+                );
+              })}
+            </div>
+          </SheetContent>
+        </Sheet>
       </div>
     </motion.nav>
   );

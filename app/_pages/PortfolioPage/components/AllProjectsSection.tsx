@@ -1,8 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 
 import useSWR from "swr";
 import fetchApi from "@/utils/apiMaker";
@@ -11,6 +9,20 @@ import { useMemo, useState } from "react";
 import ProjectsCardSkeletonShimmer from "@/components/skeletons/ProjectsCardSkeletonShimmer";
 import EmptyResult from "@/components/common/EmptyResult";
 import { useSearchParams } from "next/navigation";
+import SidebarFilter from "./SidebarFilter";
+import { Filter, ListFilter } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
 
 interface Project {
   _id: string;
@@ -30,30 +42,11 @@ interface Project {
   githubLink: string;
 }
 
-const categories = [
-  { id: 1, value: "all", label: "All" },
-  { id: 2, value: "webapp", label: "Web App" },
-  { id: 3, value: "Portfolio", label: "Portfolio" },
-  { id: 4, value: "e-commerce", label: "E-commerce" },
-  { id: 5, value: "landing-page", label: "Landing Page" },
-  { id: 6, value: "dashboard", label: "Dashboard" },
-];
-
-const technologies = [
-  { id: 1, value: "all", label: "All" },
-  { id: 2, value: "react.js", label: "React" },
-  { id: 3, value: "next.js", label: "Next.js" },
-  { id: 4, value: "vue.js", label: "Vue.js" },
-  { id: 5, value: "angular.js", label: "Angular" },
-  { id: 6, value: "node.js", label: "Node.js" },
-  { id: 7, value: "typescript", label: "TypeScript" },
-];
-
 interface AllProjectsSectionProps {
   searchQuery: string;
-  setSearchQuery: (query: string) => void;
+  setSearchQuery: (_query: string) => void;
   selectedCategory: string;
-  setSelectedCategory: (category: string) => void;
+  setSelectedCategory: (_category: string) => void;
 }
 
 const AllProjectsSection = ({
@@ -63,7 +56,7 @@ const AllProjectsSection = ({
   setSelectedCategory,
 }: AllProjectsSectionProps) => {
   const params = useSearchParams();
-
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
   const [selectedTechnology, setSelectedTechnology] = useState("all");
 
   // Build query string based on current selections and search params
@@ -86,7 +79,7 @@ const AllProjectsSection = ({
 
     const result = queryParams.toString();
     return result ? `?${result}` : "";
-  }, [selectedCategory, selectedTechnology, searchQuery]);
+  }, [selectedCategory, selectedTechnology, searchQuery, setSearchQuery]);
 
   const { data, isLoading } = useSWR(
     `/project/all${queryString}`,
@@ -102,56 +95,18 @@ const AllProjectsSection = ({
   return (
     <>
       {/* All Projects */}
-      <section className="py-20 bg-secondary/30">
+      <section className="py-8 sm:py-10 lg:py-20 bg-secondary/40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-4 gap-8">
             {/* Sidebar Filters */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="lg:col-span-1"
-            >
-              <Card className="p-6 sticky top-24">
-                <h3 className="font-semibold text-lg mb-4">Filter Projects</h3>
-                <div className="space-y-4">
-                  <div>
-                    <h4 className="font-medium mb-2">Category</h4>
-                    <div className="space-y-2">
-                      {categories.map((category) => (
-                        <Button
-                          key={category?.value}
-                          variant="ghost"
-                          size="sm"
-                          className={`w-full justify-start text-xs ${category?.value === selectedCategory && "bg-primary text-white"}`}
-                          onClick={() => setSelectedCategory(category?.value)}
-                        >
-                          {category?.label}
-                        </Button>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="pt-4 border-t">
-                    <h4 className="font-medium mb-2">Technology</h4>
-                    <div className="space-y-2">
-                      {technologies.map((tech) => (
-                        <Button
-                          key={tech?.id}
-                          variant="ghost"
-                          size="sm"
-                          className={`w-full justify-start text-xs ${tech?.value === selectedTechnology && "bg-primary text-white"}`}
-                          onClick={() => setSelectedTechnology(tech?.value)}
-                        >
-                          {tech?.label}
-                        </Button>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </Card>
-            </motion.div>
+            <div className="hidden lg:block">
+              <SidebarFilter
+                selectedCategory={selectedCategory}
+                setSelectedCategory={setSelectedCategory}
+                selectedTechnology={selectedTechnology}
+                setSelectedTechnology={setSelectedTechnology}
+              />
+            </div>
 
             {/* Projects Grid */}
             <div className="lg:col-span-3">
@@ -162,10 +117,21 @@ const AllProjectsSection = ({
                 viewport={{ once: true }}
                 className="mb-8"
               >
-                <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-                  All Projects
-                </h2>
-                <p className="text-xl text-muted-foreground">
+                <div className="flex items-center justify-between gap-4">
+                  <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold">
+                    All Projects
+                  </h2>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="flex items-center gap-2 border-primary text-primary lg:hidden"
+                    onClick={() => setIsSheetOpen(true)}
+                  >
+                    <ListFilter size={16} />
+                    <span>Filter</span>
+                  </Button>
+                </div>
+                <p className="text-base sm:text-xl text-muted-foreground mt-4">
                   Explore my complete portfolio of work across different
                   technologies and industries
                 </p>
@@ -213,6 +179,33 @@ const AllProjectsSection = ({
           </div>
         </div>
       </section>
+
+      {/* Sidebar Filter Sheet for Mobile */}
+      <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
+        <SheetContent className="overflow-y-auto">
+          <SheetHeader>
+            <SheetTitle className="text-left">
+              Filter Projects
+            </SheetTitle>
+            <SheetDescription className="text-left">
+              Select categories and technologies to filter projects
+            </SheetDescription>
+          </SheetHeader>
+          <div className="my-4">
+            <SidebarFilter
+              selectedCategory={selectedCategory}
+              setSelectedCategory={setSelectedCategory}
+              selectedTechnology={selectedTechnology}
+              setSelectedTechnology={setSelectedTechnology}
+            />
+          </div>
+          <SheetFooter>
+            <SheetClose asChild>
+              <Button variant="outline">Close</Button>
+            </SheetClose>
+          </SheetFooter>
+        </SheetContent>
+      </Sheet>
     </>
   );
 };

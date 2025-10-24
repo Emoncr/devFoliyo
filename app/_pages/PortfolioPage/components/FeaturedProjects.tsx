@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Github, Calendar, Eye } from "lucide-react";
+import { Github, Calendar, Eye, SquareArrowOutUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import useSWR from "swr";
@@ -23,24 +23,22 @@ const FeaturedProjects = () => {
 
   const featuredProjects = data?.data?.items || [];
 
-  console.log(featuredProjects, "featuredProjects");
-
   return (
     <>
       {/* Featured Projects */}
-      <section className="py-20">
+      <section className="py-8 sm:py-10 lg:py-20 ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-10 lg:mb-16"
           >
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4">
+            <h2 className=" text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">
               Featured Projects
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-base sm:text-xl text-muted-foreground max-w-3xl mx-auto">
               Highlighting some of my most impactful and innovative work
             </p>
           </motion.div>
@@ -49,9 +47,9 @@ const FeaturedProjects = () => {
             <FeaturedProjectSkeleton />
           ) : (
             <>
-              <div className="grid lg:grid-cols-2 gap-12">
+              <div className="grid md:grid-cols-2 md:gap-6 gap-8">
                 {featuredProjects
-                  .slice(0, 4)
+                  .slice(0, 3)
                   .map((project: any, index: number) => (
                     <motion.div
                       key={project._id}
@@ -59,10 +57,10 @@ const FeaturedProjects = () => {
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                       viewport={{ once: true }}
-                      className="group"
+                      className="group overflow-hidden"
                     >
-                      <Card className="overflow-hidden hover:shadow-xl transition-all duration-300">
-                        <div className="relative overflow-hidden">
+                      <Card className=" hover:shadow-xl transition-all duration-300">
+                        <div className="relative">
                           <Image
                             src={project.coverImage || "/placeholder-image.jpg"}
                             alt={project.title}
@@ -77,8 +75,8 @@ const FeaturedProjects = () => {
                                   href={project.previewLink || "#"}
                                   target="_blank"
                                 >
-                                  <Eye className="w-4 h-4 mr-2" />
-                                  View Live
+                                  <Eye className="w-4 h-4 lg:mr-2" />
+                                  <span className="hidden lg:block">View</span>
                                 </Link>
                               </Button>
                               <Button size="sm" variant="outline" asChild>
@@ -86,8 +84,19 @@ const FeaturedProjects = () => {
                                   href={project.githubLink || "#"}
                                   target="_blank"
                                 >
-                                  <Github className="w-4 h-4 mr-2" />
-                                  Code
+                                  <Github className="w-4 h-4 lg:mr-2" />
+                                  <span className="hidden lg:block">Code</span>
+                                </Link>
+                              </Button>
+                              <Button size="sm" variant="outline" asChild>
+                                <Link
+                                  href={project.githubLink || "#"}
+                                  target="_blank"
+                                >
+                                  <SquareArrowOutUpRight className="w-4 h-4 lg:mr-2" />
+                                  <span className="hidden lg:block">
+                                    Preview
+                                  </span>
                                 </Link>
                               </Button>
                             </div>
@@ -121,7 +130,7 @@ const FeaturedProjects = () => {
                           <p className="text-sm text-muted-foreground mb-4">
                             Type: {project.projectType || "Web App"}
                           </p>
-                          <div className="flex flex-wrap gap-2">
+                          <div className="flex flex-wrap gap-2 w-full max-w-[320px]">
                             {project.tags?.map((tag: string) => (
                               <Badge
                                 key={tag}
