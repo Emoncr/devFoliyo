@@ -10,10 +10,8 @@ import ProjectsCardSkeletonShimmer from "@/components/skeletons/ProjectsCardSkel
 import EmptyResult from "@/components/common/EmptyResult";
 import { useSearchParams } from "next/navigation";
 import SidebarFilter from "./SidebarFilter";
-import { Filter, ListFilter } from "lucide-react";
+import { ListFilter } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import {
   Sheet,
   SheetClose,
