@@ -6,10 +6,12 @@ import { Calendar } from "lucide-react";
 
 import { workHistory } from "@/data";
 import Image from "next/image";
-import { useTheme } from "next-themes";
+import {
+  useSpacemanTheme,
+} from "@space-man/react-theme-animation";
 
 const WorkHistorySection = () => {
-  const { theme } = useTheme();
+  const { theme } = useSpacemanTheme();
   return (
     <>
       {/* Work History */}

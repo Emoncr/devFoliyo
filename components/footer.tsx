@@ -4,11 +4,13 @@ import Link from "next/link";
 import { Heart } from "lucide-react";
 
 import SocialIcons from "./common/SocialIcons";
-import { useTheme } from "next-themes";
 import Image from "next/image";
+import {
+  useSpacemanTheme,
+} from "@space-man/react-theme-animation";
 
 export default function Footer() {
-  const { theme } = useTheme();
+  const { theme } = useSpacemanTheme();
   return (
     <footer className="bg-secondary/30 border-t border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

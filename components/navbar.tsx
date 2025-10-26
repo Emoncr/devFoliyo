@@ -18,13 +18,12 @@ import {
   Mail,
   Download,
 } from "lucide-react";
-import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { Sheet, SheetContent } from "@/components/ui/sheet";
 import {
-  Sheet,
-  SheetContent,
-} from "@/components/ui/sheet";
+  useSpacemanTheme,
+} from "@space-man/react-theme-animation";
 
 const navigation = [
   { name: "Home", href: "/", icon: Home },
@@ -39,8 +38,8 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
-  const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const { theme, switchThemeFromElement, ref } = useSpacemanTheme();
 
   useEffect(() => {
     setMounted(true);
@@ -109,10 +108,18 @@ export default function Navbar() {
               );
             })}
             <div className="w-0.5 h-6 bg-slate-300 dark:bg-slate-600 rounded-xl"></div>
+
             <Button
+              className="theme-toggle-btn"
               variant="ghost"
               size="sm"
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              ref={ref}
+              onClick={() =>
+                switchThemeFromElement(
+                  theme === "light" ? "dark" : "light",
+                  ref.current as any
+                )
+              }
             >
               {theme === "dark" ? (
                 <Sun className="w-4 h-4" />
@@ -132,17 +139,13 @@ export default function Navbar() {
 
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center space-x-2">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            >
+            {/* <Button variant="ghost" size="sm" ref={ref} onClick={toggleTheme}>
               {theme === "dark" ? (
                 <Sun className="w-4 h-4" />
               ) : (
                 <Moon className="w-4 h-4" />
               )}
-            </Button>
+            </Button> */}
             <Button
               variant="ghost"
               size="sm"

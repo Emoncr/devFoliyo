@@ -1,3 +1,4 @@
+"use client";
 import HeroSection from "./components/HeroSection";
 import WorkHistorySection from "./components/WorkHistorySection";
 import PortfolioSection from "./components/PortfolioSection";
@@ -7,8 +8,11 @@ import Footer from "@/components/footer";
 import { ServicesSection } from "./components/ServicesSection";
 
 export default function HomePage() {
+
   return (
     <div className="min-h-screen">
+
+
       <Navbar />
       <HeroSection />
       <WorkHistorySection />

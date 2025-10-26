@@ -97,14 +97,20 @@ const AllProjectsSection = ({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-4 gap-8">
             {/* Sidebar Filters */}
-            <div className="hidden lg:block">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="lg:col-span-1 hidden lg:block"
+            >
               <SidebarFilter
                 selectedCategory={selectedCategory}
                 setSelectedCategory={setSelectedCategory}
                 selectedTechnology={selectedTechnology}
                 setSelectedTechnology={setSelectedTechnology}
               />
-            </div>
+            </motion.div>
 
             {/* Projects Grid */}
             <div className="lg:col-span-3">
@@ -182,20 +188,26 @@ const AllProjectsSection = ({
       <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
         <SheetContent className="overflow-y-auto">
           <SheetHeader>
-            <SheetTitle className="text-left">
-              Filter Projects
-            </SheetTitle>
+            <SheetTitle className="text-left">Filter Projects</SheetTitle>
             <SheetDescription className="text-left">
               Select categories and technologies to filter projects
             </SheetDescription>
           </SheetHeader>
           <div className="my-4">
-            <SidebarFilter
-              selectedCategory={selectedCategory}
-              setSelectedCategory={setSelectedCategory}
-              selectedTechnology={selectedTechnology}
-              setSelectedTechnology={setSelectedTechnology}
-            />
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="lg:col-span-1"
+            >
+              <SidebarFilter
+                selectedCategory={selectedCategory}
+                setSelectedCategory={setSelectedCategory}
+                selectedTechnology={selectedTechnology}
+                setSelectedTechnology={setSelectedTechnology}
+              />
+            </motion.div>
           </div>
           <SheetFooter>
             <SheetClose asChild>

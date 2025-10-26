@@ -4,7 +4,9 @@ import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
-import { useTheme } from "next-themes";
+import {
+  useSpacemanTheme,
+} from "@space-man/react-theme-animation";
 
 const timeline = [
   {
@@ -40,7 +42,7 @@ const timeline = [
 ];
 
 const TimeLineSection = () => {
-  const { theme, setTheme } = useTheme();
+  const { theme } = useSpacemanTheme();
   return (
     <>
       <section className="py-20 bg-secondary/30">
@@ -102,8 +104,8 @@ const TimeLineSection = () => {
                                 item.type === "work"
                                   ? "default"
                                   : item.type === "achievement"
-                                  ? "secondary"
-                                  : "outline"
+                                    ? "secondary"
+                                    : "outline"
                               }
                               className="mb-1"
                             >
