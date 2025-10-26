@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import {
   Menu,
@@ -18,9 +18,12 @@ import {
   Mail,
   Download,
 } from "lucide-react";
-import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { Sheet, SheetContent } from "@/components/ui/sheet";
+import {
+  useSpacemanTheme,
+} from "@space-man/react-theme-animation";
 
 const navigation = [
   { name: "Home", href: "/", icon: Home },
@@ -35,8 +38,8 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
-  const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const { theme, switchThemeFromElement, ref } = useSpacemanTheme();
 
   useEffect(() => {
     setMounted(true);
@@ -105,10 +108,18 @@ export default function Navbar() {
               );
             })}
             <div className="w-0.5 h-6 bg-slate-300 dark:bg-slate-600 rounded-xl"></div>
+
             <Button
+              className="theme-toggle-btn"
               variant="ghost"
               size="sm"
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              ref={ref}
+              onClick={() =>
+                switchThemeFromElement(
+                  theme === "light" ? "dark" : "light",
+                  ref.current as any
+                )
+              }
             >
               {theme === "dark" ? (
                 <Sun className="w-4 h-4" />
@@ -128,17 +139,13 @@ export default function Navbar() {
 
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center space-x-2">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            >
+            {/* <Button variant="ghost" size="sm" ref={ref} onClick={toggleTheme}>
               {theme === "dark" ? (
                 <Sun className="w-4 h-4" />
               ) : (
                 <Moon className="w-4 h-4" />
               )}
-            </Button>
+            </Button> */}
             <Button
               variant="ghost"
               size="sm"
@@ -153,38 +160,32 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
-        <AnimatePresence>
-          {isOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="md:hidden border-t border-border"
-            >
-              <div className="py-4 space-y-2">
-                {navigation.map((item) => {
-                  const Icon = item.icon;
-                  return (
-                    <Link
-                      key={item.name}
-                      href={item.href}
-                      onClick={() => setIsOpen(false)}
+        {/* Sidebar Filter Sheet for Mobile */}
+        <Sheet open={isOpen} onOpenChange={setIsOpen}>
+          <SheetContent className="overflow-y-auto px-4">
+            <div className="py-4 space-y-4">
+              {navigation.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <Button
+                      variant={pathname === item.href ? "default" : "ghost"}
+                      size="sm"
+                      className="w-full justify-start gap-2"
                     >
-                      <Button
-                        variant={pathname === item.href ? "secondary" : "ghost"}
-                        className="w-full justify-start"
-                      >
-                        <Icon className="w-4 h-4 mr-2" />
-                        {item.name}
-                      </Button>
-                    </Link>
-                  );
-                })}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+                      <Icon className="w-4 h-4 mr-2" />
+                      {item.name}
+                    </Button>
+                  </Link>
+                );
+              })}
+            </div>
+          </SheetContent>
+        </Sheet>
       </div>
     </motion.nav>
   );

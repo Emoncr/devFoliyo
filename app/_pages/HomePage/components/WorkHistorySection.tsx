@@ -6,14 +6,16 @@ import { Calendar } from "lucide-react";
 
 import { workHistory } from "@/data";
 import Image from "next/image";
-import { useTheme } from "next-themes";
+import {
+  useSpacemanTheme,
+} from "@space-man/react-theme-animation";
 
 const WorkHistorySection = () => {
-  const { theme, setTheme } = useTheme();
+  const { theme } = useSpacemanTheme();
   return (
     <>
       {/* Work History */}
-      <section className="py-20 bg-secondary/30">
+      <section className="py-8 sm:py-10 lg:py-20 bg-secondary/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -22,10 +24,10 @@ const WorkHistorySection = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">
               Work Experience
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-base sm:text-xl text-muted-foreground max-w-3xl mx-auto">
               {"I've had the privilege of working with some amazing companies"}
             </p>
           </motion.div>

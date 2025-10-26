@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Github } from "lucide-react";
 import Image from "next/image";
 import fetchApi from "@/utils/apiMaker";
 import useSWR from "swr";
@@ -42,7 +42,7 @@ const PortfolioSection = () => {
   return (
     <>
       {/* Portfolio Highlights */}
-      <section className="py-20">
+      <section className="py-8 sm:py-10 lg:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -51,10 +51,10 @@ const PortfolioSection = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">
               Featured Projects
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-base sm:text-xl text-muted-foreground max-w-3xl mx-auto">
               {"Some of my recent work that I'm proud to showcase"}
             </p>
           </motion.div>
@@ -71,10 +71,10 @@ const PortfolioSection = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     viewport={{ once: true }}
-                    className="group"
+                    className="group border border-white/10 hover:border-primary/50 rounded-lg overflow-hidden  transition-transform  duration-200 hover:shadow-lg"
                   >
-                    <Card className="overflow-hidden hover:shadow-xl transition-all duration-700 group-hover:scale-[1.01]">
-                      <div className="relative overflow-hidden p-4 bg-[#f7f7f7] dark:bg-[#0B111D]">
+                    <Card className=" hover:shadow-xl transition-all duration-700 group-hover:scale-[1.01] ">
+                      <div className="relative overflow-hidden p-0 bg-[#f7f7f7] dark:bg-[#0B111D]">
                         <Image
                           src={project.coverImage}
                           alt={project.title}
@@ -89,7 +89,7 @@ const PortfolioSection = () => {
                           </Button>
                         </div>
                       </div>
-                      <CardContent className="p-6">
+                      <CardContent className="p-6 group-hover:border-primary/50 transition-border duration-300">
                         <h3 className="font-semibold text-lg mb-2">
                           {project.title}
                         </h3>
@@ -106,6 +106,36 @@ const PortfolioSection = () => {
                               {tag}
                             </Badge>
                           ))}
+                        </div>
+
+                        <div className="flex gap-2 mt-4 pt-4 border-t border-border/50">
+                          <Button size="sm" className="flex-1" asChild>
+                            <a
+                              href={project.previewLink}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <ExternalLink className="w-4 h-4 mr-2" />
+                              View Project
+                            </a>
+                          </Button>
+                          {project.githubLink && (
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              className="flex-1 bg-transparent"
+                              asChild
+                            >
+                              <a
+                                href={project.githubLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <Github className="w-4 h-4 mr-2" />
+                                Code
+                              </a>
+                            </Button>
+                          )}
                         </div>
                       </CardContent>
                     </Card>

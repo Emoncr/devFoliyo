@@ -10,12 +10,12 @@ import SocialIcons from "@/components/common/SocialIcons";
 const HeroSection = () => {
   return (
     <>
-      <section className="relative min-h-[calc(100vh-64px)] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[calc(100vh-64px)] flex items-center justify-center overflow-hidden py-24 pb-16 lg:py-0 lg:pb-0">
         <div className="absolute inset-0 bg-gradient-to-br from-red-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900" />
         <div className="absolute inset-0 bg-grid-pattern opacity-5" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-32 2xl:gap-48 items-center">
+          <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 gap-12 lg:gap-32 2xl:gap-48 items-center">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
@@ -85,7 +85,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.7 }}
-                className="flex items-center space-x-6 text-sm text-muted-foreground"
+                className="flex items-center space-x-6 text-xs  sm:text-sm text-muted-foreground"
               >
                 <div className="flex items-center">
                   <Briefcase className="w-4 h-4 mr-1" />

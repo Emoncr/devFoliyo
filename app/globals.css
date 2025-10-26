@@ -80,3 +80,29 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Add other theme variants from design system or tweakcn */
+
+.theme-supabase {
+  --background: oklch(0.9911 0 0);
+  --foreground: oklch(0.2046 0 0);
+}
+
+.theme-supabase.dark {
+  --background: oklch(0.1822 0 0);
+  --foreground: oklch(0.9288 0.0126 255.5078);
+}
+
+.theme-mono {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.1448 0 0);
+}
+
+.theme-mono.dark {
+  --background: oklch(0.1448 0 0);
+  --foreground: oklch(1 0 0);
+}
+.theme-ocean {
+  --background: oklch(0.9131 0.1043 246.0938);
+  --foreground: oklch(0.2139 0.0894 253.9063);
+}
